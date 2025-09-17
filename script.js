@@ -1,57 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Define navigation links and their corresponding content functions
-    const navigationLinks = {
-        dashboard: getDashboardContent,
-        serverList: getServerListContent,
-        support: getSupportContent,
-        developers: getDevelopersContent,
-        about: getAboutContent,
-        login: getLoginContent,
-    };
-
+    const base = "https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/";
+    let loggedIn = false;
     const content = document.getElementById('content');
-    const sidebarLinks = document.querySelectorAll('.sidebar a');
-
-    // Add event listeners for sidebar links
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            const targetId = link.id;
-            if (navigationLinks[targetId]) {
-                showLoadingSpinner();
-                setTimeout(() => {
-                    content.innerHTML = navigationLinks[targetId]();
-                    content.classList.add('fade-in');
-                    setTimeout(() => {
-                        content.classList.remove('fade-in');
-                    }, 500);
-                }, 500);
-            }
-        });
-    });
-
-    // Load default content and set initial background
-    content.innerHTML = getDashboardContent();
     setBackground();
-    setInterval(setBackground, 30000); // Change background every 30 seconds
+    setInterval(setBackground, 30000);
 
-    // Handle button actions
+    // Show login form first
+    content.innerHTML = getLoginContent();
+
+    // Only allow navigation after login
     document.addEventListener('click', (event) => {
         const { id } = event.target;
-        if (id === 'launch') {
+        if (!loggedIn) {
+            if (id === 'loginBtn') {
+                handleLogin();
+            } else if (id === 'dashboard' || id === 'serverList' || id === 'support' || id === 'developers' || id === 'about' || id === 'launch' || id === 'addServer') {
+                event.preventDefault();
+                alert('You must log in first!');
+            }
+            return;
+        }
+        if (id === 'dashboard') {
+            content.innerHTML = getDashboardContent();
+        } else if (id === 'serverList') {
+            content.innerHTML = getServerListContent();
+        } else if (id === 'support') {
+            content.innerHTML = getSupportContent();
+        } else if (id === 'developers') {
+            content.innerHTML = getDevelopersContent();
+        } else if (id === 'about') {
+            content.innerHTML = getAboutContent();
+        } else if (id === 'launch') {
             handleLaunch();
         } else if (id === 'addServer') {
             handleAddServer();
-        } else if (id === 'loginBtn') {
-            handleLogin();
         }
     });
 
-    // Handle version selection change
     document.addEventListener('change', (event) => {
+        if (!loggedIn) return;
         if (event.target.id === 'version') {
             console.log(`Version selected: ${event.target.value}`);
         }
     });
+
+    function handleLogin() {
+        const username = document.getElementById('daymeiandev').value.trim();
+        const password = document.getElementById('Youtube2008!').value;
+        if (username && password) {
+            if (username === 'daymeiandev' && password === 'Youtube2008!') {
+                loggedIn = true;
+                alert('Login successful!');
+                content.innerHTML = getDashboardContent();
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        } else {
+            alert('Please enter both username and password.');
+        }
+    }
 });
 
 // Show loading spinner
@@ -117,9 +124,9 @@ function getDashboardContent() {
         <div class="version-selector">
             <label for="version">Select Version:</label>
             <select id="version">
-                <option value="versions/1.8.8/index.html">1.8.8</option>
-                <option value="versions/1.7.3/index.html">1.7.3</option>
-                <option value="versions/1.5.2/index.html">1.5.2</option>
+                    <option value="${base}versions/1.8.8/index.html">1.8.8</option>
+                    <option value="${base}versions/1.7.3/index.html">1.7.3</option>
+                    <option value="${base}versions/1.5.2/index.html">1.5.2</option>
                 <option value="versions/1.3/index.html">1.3</option>
                 <option value="versions/1.2.6/index.html">1.2.6</option>
                 <option value="versions/ResentClient/index.html">ResentClient</option>
@@ -148,7 +155,7 @@ function getServerListContent() {
                         <span class="server-address">wss://mc.arch.lol</span>
                     </div>
                     <button class="copy-button" data-address="wss://mc.arch.lol">Copy</button>
-                    <button class="play-button" onclick="location.href='versions/1.8.8/?server=wss://mc.arch.lol'">Play</button>
+                        <button class="play-button" onclick="location.href='${base}versions/1.8.8/index.html?server=wss://mc.arch.lol'">Play</button>
                 </div>
                 <div class="server-entry">
                     <div class="server-details">
@@ -156,7 +163,7 @@ function getServerListContent() {
                         <span class="server-address">wss://asianf4rmer.minecraft.pe</span>
                     </div>
                     <button class="copy-button" data-address="wss://asianf4rmer.minecraft.pe">Copy</button>
-                    <button class="play-button" onclick="location.href='versions/1.8.8/?server=wss://asianf4rmer.minecraft.pe'">Play</button>
+                        <button class="play-button" onclick="location.href='${base}versions/1.8.8/index.html?server=wss://asianf4rmer.minecraft.pe'">Play</button>
                 </div>
                 <!-- Add other server entries similarly -->
                 <div class="server-entry">
@@ -165,7 +172,7 @@ function getServerListContent() {
                         <span class="server-address">wss://mc.zyth.me</span>
                     </div>
                     <button class="copy-button" data-address="wss://mc.zyth.me">Copy</button>
-                    <button class="play-button" onclick="location.href='versions/1.8.8/?server=wss://mc.zyth.me'">Play</button>
+                        <button class="play-button" onclick="location.href='${base}versions/1.8.8/index.html?server=wss://mc.zyth.me'">Play</button>
                 </div>
             </div>
         </div>
@@ -206,16 +213,16 @@ function getSupportContent() {
 // Function to get developers content
 function getDevelopersContent() {
     return `
-        <h2>Developers</h2>
-        <div class="developer-info">
-            <img src="images/flqmze-icon.png" alt="FLQMZECLIENT" class="developer-icon">
-            <p class="developer-name">FLQMZECLIENT</p>
-            <p class="developer-role">Lead Developer</p>
+        <h2>Created By</h2>
+        <div class="createdby-info">
+            <img src="https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/flqmze-icon.png" alt="FLQMZECLIENT" class="createdby-icon">
+            <p class="createdby-name">FLQMZECLIENT</p>
+            <p class="createdby-role">Lead Creator</p>
         </div>
-        <div class="developer-info">
-            <img src="images/ar-dev-icon.png" alt="AR-dev" class="developer-icon">
-            <p class="developer-name">AR-dev</p>
-            <p class="developer-role">Co-Developer</p>
+        <div class="createdby-info">
+            <img src="https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/ar-dev-icon.png" alt="AR-dev" class="createdby-icon">
+            <p class="createdby-name">AR-dev</p>
+            <p class="createdby-role">Co-Creator</p>
         </div>
     `;
 }
@@ -249,11 +256,11 @@ function getLoginContent() {
 // Function to set background
 function setBackground() {
     const backgrounds = [
-        'url("images/background1.jpg")',
-        'url("images/background2.jpg")',
-        'url("images/background3.jpg")',
-        'url("images/background4.jpg")',
-        'url("images/background5.jpg")',
+    'url("https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/background1.jpg")',
+    'url("https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/background2.jpg")',
+    'url("https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/background3.jpg")',
+    'url("https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/background4.jpg")',
+    'url("https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/background5.jpg")',
     ];
     const randomIndex = Math.floor(Math.random() * backgrounds.length);
     document.body.style.backgroundImage = backgrounds[randomIndex];

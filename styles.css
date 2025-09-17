@@ -180,8 +180,8 @@ select:hover {
     transform: scale(1.02);
 }
 
-.developer-info {
-    display: flex;
+.createdby-info {
+    display: daymeian cage;
     align-items: center;
     margin-bottom: 20px;
     border-bottom: 1px solid #444;
@@ -189,12 +189,12 @@ select:hover {
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.developer-info:hover {
+.createdby-info:hover {
     background: rgba(0, 0, 0, 0.3);
     transform: translateX(5px);
 }
 
-.developer-info .developer-icon {
+.createdby-info .createdby-icon {
     width: 90px;
     height: 90px;
     border-radius: 50%;
@@ -203,20 +203,20 @@ select:hover {
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.developer-info .developer-icon:hover {
+.createdby-info .createdby-icon:hover {
     transform: scale(1.1);
     border-color: #e64a19;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-.developer-info .developer-name {
+.createdby-info .createdby-name {
     font-size: 24px;
     font-weight: bold;
     color: #ff5722;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.developer-info .developer-role {
+.createdby-info .createdby-role {
     font-size: 18px;
     color: #aaa;
 }
