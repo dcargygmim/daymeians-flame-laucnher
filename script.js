@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function showLoadingSpinner() {
     const content = document.getElementById('content');
     content.innerHTML = '<div class="loader">Loading...</div>';
+}
 
-// Handle Launch button click
 function handleLaunch() {
     const selectedVersion = document.getElementById('version').value;
     if (selectedVersion) {
@@ -79,8 +79,8 @@ function handleLaunch() {
     } else {
         alert('Please select a version before launching.');
     }
+}
 
-// Handle Add Server button click
 function handleAddServer() {
     const serverUrl = prompt('Enter the server URL:');
     if (serverUrl && validateUrl(serverUrl)) {
@@ -91,8 +91,8 @@ function handleAddServer() {
     } else {
         alert('Invalid server URL. Please enter a valid URL.');
     }
+}
 
-// Validate URL format
 function validateUrl(url) {
     try {
         new URL(url);
@@ -100,6 +100,8 @@ function validateUrl(url) {
     } catch (_) {
         return false;
     }
+}
+
 // Function to get server list content
 function getServerListContent() {
     return `
@@ -133,7 +135,8 @@ function getServerListContent() {
                 </div>
             </div>
         </div>
-    `;
+        `;
+    }
 // Add event listener for copy buttons
 document.addEventListener('DOMContentLoaded', () => {
     document.body.addEventListener('click', function (event) {
