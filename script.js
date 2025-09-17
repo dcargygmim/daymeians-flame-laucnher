@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const base = "https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/";
+    const base = "https://dcargygmim.github.io/daymeians-flame-laucnher/";
     let loggedIn = false;
     const content = document.getElementById('content');
     setBackground();
@@ -215,12 +215,12 @@ function getDevelopersContent() {
     return `
         <h2>Created By</h2>
         <div class="createdby-info">
-            <img src="https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/flqmze-icon.png" alt="FLQMZECLIENT" class="createdby-icon">
+            <img src="https://dcargygmim.github.io/daymeians-flame-laucnher/images/flqmze-icon.png" alt="FLQMZECLIENT" class="createdby-icon">
             <p class="createdby-name">FLQMZECLIENT</p>
             <p class="createdby-role">Lead Creator</p>
         </div>
         <div class="createdby-info">
-            <img src="https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/ar-dev-icon.png" alt="AR-dev" class="createdby-icon">
+            <img src="https://dcargygmim.github.io/daymeians-flame-laucnher/images/ar-dev-icon.png" alt="AR-dev" class="createdby-icon">
             <p class="createdby-name">AR-dev</p>
             <p class="createdby-role">Co-Creator</p>
         </div>
@@ -256,11 +256,11 @@ function getLoginContent() {
 // Function to set background
 function setBackground() {
     const backgrounds = [
-    'url("https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/background1.jpg")',
-    'url("https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/background2.jpg")',
-    'url("https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/background3.jpg")',
-    'url("https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/background4.jpg")',
-    'url("https://dcargygmim.github.io/DAYMEIANS-FLAME-LAUCNHER/images/background5.jpg")',
+    'url("https://dcargygmim.github.io/daymeians-flame-laucnher/images/background1.jpg")',
+    'url("https://dcargygmim.github.io/daymeians-flame-laucnher/images/background2.jpg")',
+    'url("https://dcargygmim.github.io/daymeians-flame-laucnher/images/background3.jpg")',
+    'url("https://dcargygmim.github.io/daymeians-flame-laucnher/images/background4.jpg")',
+    'url("https://dcargygmim.github.io/daymeians-flame-laucnher/images/background5.jpg")',
     ];
     const randomIndex = Math.floor(Math.random() * backgrounds.length);
     document.body.style.backgroundImage = backgrounds[randomIndex];
