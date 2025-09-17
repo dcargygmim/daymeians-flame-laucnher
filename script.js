@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const base = "https://dcargygmim.github.io/daymeians-flame-laucnher/";
+    const base = "https://dcargygmim.github.io/";
     let loggedIn = localStorage.getItem('loggedIn') === 'true';
     const content = document.getElementById('content');
     setBackground();
@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function showLoadingSpinner() {
     const content = document.getElementById('content');
     content.innerHTML = '<div class="loader">Loading...</div>';
-}
 
 // Handle Launch button click
 function handleLaunch() {
@@ -80,7 +79,6 @@ function handleLaunch() {
     } else {
         alert('Please select a version before launching.');
     }
-}
 
 // Handle Add Server button click
 function handleAddServer() {
@@ -93,7 +91,6 @@ function handleAddServer() {
     } else {
         alert('Invalid server URL. Please enter a valid URL.');
     }
-}
 
 // Validate URL format
 function validateUrl(url) {
@@ -103,9 +100,20 @@ function validateUrl(url) {
     } catch (_) {
         return false;
     }
-}
+// Function to get server list content
+function getServerListContent() {
+    return `
+        <h2>Server List</h2>
+        <div id="external" class="tab-content">
+            <h1>External Servers</h1>
+            <div class="server-list minecraft-scrollbar">
+                <div class="server-entry">
+                    <div class="server-details">
+                        <span class="server-name">ArchMC</span>
+                        <span class="server-address">wss://mc.arch.lol</span>
+                    </div>
                     <button class="copy-button" data-address="wss://mc.arch.lol">Copy</button>
-                        <button class="play-button" onclick="location.href='${base}versions/1.8.8/index.html?server=wss://mc.arch.lol'">Play</button>
+                    <button class="play-button" onclick="location.href='${base}versions/1.8.8/index.html?server=wss://mc.arch.lol'">Play</button>
                 </div>
                 <div class="server-entry">
                     <div class="server-details">
@@ -113,29 +121,24 @@ function validateUrl(url) {
                         <span class="server-address">wss://asianf4rmer.minecraft.pe</span>
                     </div>
                     <button class="copy-button" data-address="wss://asianf4rmer.minecraft.pe">Copy</button>
-                        <button class="play-button" onclick="location.href='${base}versions/1.8.8/index.html?server=wss://asianf4rmer.minecraft.pe'">Play</button>
+                    <button class="play-button" onclick="location.href='${base}versions/1.8.8/index.html?server=wss://asianf4rmer.minecraft.pe'">Play</button>
                 </div>
-                <!-- Add other server entries similarly -->
                 <div class="server-entry">
                     <div class="server-details">
                         <span class="server-name">ZythMC</span>
                         <span class="server-address">wss://mc.zyth.me</span>
                     </div>
                     <button class="copy-button" data-address="wss://mc.zyth.me">Copy</button>
-                        <button class="play-button" onclick="location.href='${base}versions/1.8.8/index.html?server=wss://mc.zyth.me'">Play</button>
+                    <button class="play-button" onclick="location.href='${base}versions/1.8.8/index.html?server=wss://mc.zyth.me'">Play</button>
                 </div>
             </div>
         </div>
     `;
-}
-
 // Add event listener for copy buttons
 document.addEventListener('DOMContentLoaded', () => {
-    const copyButtons = document.querySelectorAll('.copy-button');
-
-    copyButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const address = button.getAttribute('data-address');
+    document.body.addEventListener('click', function (event) {
+        if (event.target.classList.contains('copy-button')) {
+            const address = event.target.getAttribute('data-address');
             navigator.clipboard.writeText(address)
                 .then(() => {
                     alert('Server address copied to clipboard!');
@@ -143,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(err => {
                     console.error('Failed to copy address: ', err);
                 });
-        });
+        }
     });
 });
 
@@ -158,7 +161,6 @@ function getSupportContent() {
             <li>Forums: <a href="https://forums.eaglercraft.com" target="_blank">Eaglercraft Forums</a></li>
         </ul>
     `;
-}
 }
 
 // Function to get about content
